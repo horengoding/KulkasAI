@@ -19,7 +19,7 @@
 - **AI Model:** [Google Gemini API](https://ai.google.dev/) (`gemini-3.6-flash`)
 - **Deployment:** [Vercel](https://vercel.com/)
 
-## Tech Stack
+## Requirements
 
 - Node.js (versi 18 atau lebih baru)
 - NPM / Yarn / PNPM
