@@ -12,6 +12,196 @@ interface AnalysisResult {
   recipes: Recipe[];
 }
 
+
+type IconProps = { className?: string };
+
+const strokeProps = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 2.2,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+};
+
+function HeartIcon({
+  filled = false,
+  tone = 'peach',
+  className,
+}: IconProps & { filled?: boolean; tone?: 'peach' | 'blue' }) {
+  const fill = tone === 'peach' ? 'var(--peach)' : 'var(--royal)';
+  const stroke = tone === 'peach' ? 'var(--peach-deep)' : 'var(--royal)';
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+        fill={filled ? fill : 'none'}
+        stroke={filled ? stroke : 'currentColor'}
+        strokeWidth={2.2}
+        strokeLinejoin="round"
+      />
+      {filled && (
+        <path
+          d="M6.2 8.6c.4-1.2 1.4-1.9 2.6-1.9"
+          fill="none"
+          stroke="#fff"
+          strokeOpacity={0.75}
+          strokeWidth={1.8}
+          strokeLinecap="round"
+        />
+      )}
+    </svg>
+  );
+}
+
+function ClockIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" fill="currentColor" fillOpacity={0.14} stroke="currentColor" strokeWidth={2.2} />
+      <path d="M12 7.5V12l3 2" {...strokeProps} />
+    </svg>
+  );
+}
+
+function CartIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path d="M6.2 7.5h13.3l-1.4 6.6a2 2 0 0 1-2 1.6H9.6a2 2 0 0 1-2-1.6L6.2 7.5Z" fill="currentColor" fillOpacity={0.16} stroke="currentColor" strokeWidth={2.2} strokeLinejoin="round" />
+      <path d="M3 4h2l1.2 3.5" {...strokeProps} />
+      <circle cx="9.8" cy="19.2" r="1.5" fill="currentColor" />
+      <circle cx="16.2" cy="19.2" r="1.5" fill="currentColor" />
+    </svg>
+  );
+}
+
+function ChefHatIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <g fill="currentColor" fillOpacity={0.16} stroke="currentColor" strokeWidth={2.2} strokeLinejoin="round">
+        <path d="M7 14.5A4.5 4.5 0 0 1 6.6 5.6 4.5 4.5 0 0 1 12 3.5a4.5 4.5 0 0 1 5.4 2.1A4.5 4.5 0 0 1 17 14.5" />
+        <rect x="7" y="14.5" width="10" height="6" rx="2" />
+      </g>
+    </svg>
+  );
+}
+
+function BulbIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.1V17h5v-1.1c0-.8.4-1.5 1.1-2.1A6 6 0 0 0 12 3Z"
+        fill="currentColor"
+        fillOpacity={0.16}
+        stroke="currentColor"
+        strokeWidth={2.2}
+        strokeLinejoin="round"
+      />
+      <path d="M10 20.5h4" {...strokeProps} />
+    </svg>
+  );
+}
+
+function CameraIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M8.6 6.5 9.8 4.5h4.4l1.2 2H18a3 3 0 0 1 3 3V17a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V9.5a3 3 0 0 1 3-3h2.6Z"
+        fill="currentColor"
+        fillOpacity={0.16}
+        stroke="currentColor"
+        strokeWidth={2.2}
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="13.2" r="3.2" fill="none" stroke="currentColor" strokeWidth={2.2} />
+    </svg>
+  );
+}
+
+function SpinnerIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeOpacity={0.25} strokeWidth={3.5} />
+      <path d="M21 12a9 9 0 0 0-9-9" fill="none" stroke="currentColor" strokeWidth={3.5} strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ArrowLeftIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path d="M14.5 6 8.5 12l6 6" {...strokeProps} strokeWidth={2.8} />
+    </svg>
+  );
+}
+
+function CheckIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path d="M5.5 12.5 10 17l8.5-9.5" {...strokeProps} strokeWidth={3.2} />
+    </svg>
+  );
+}
+
+function AlertIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" fill="currentColor" fillOpacity={0.16} stroke="currentColor" strokeWidth={2.2} />
+      <path d="M12 7.5v5" {...strokeProps} strokeWidth={2.6} />
+      <circle cx="12" cy="16.3" r="1.3" fill="currentColor" />
+    </svg>
+  );
+}
+
+function SunIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2" fill="currentColor" fillOpacity={0.25} stroke="currentColor" strokeWidth={2.2} />
+      <path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4" {...strokeProps} />
+    </svg>
+  );
+}
+
+function MoonIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"
+        fill="currentColor"
+        fillOpacity={0.2}
+        stroke="currentColor"
+        strokeWidth={2.2}
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* Ilustrasi kulkas clay: pengganti "ikon brand" sekaligus elemen utama di hero */
+function FridgeIllustration({ className, uid }: IconProps & { uid: string }) {
+  return (
+    <svg viewBox="0 0 120 140" className={className} aria-hidden="true">
+      <defs>
+        <linearGradient id={`${uid}-body`} x1="0.1" y1="0" x2="0.9" y2="1">
+          <stop offset="0" stopColor="#3A58D0" />
+          <stop offset="0.45" stopColor="#002395" />
+          <stop offset="1" stopColor="#00156B" />
+        </linearGradient>
+        <linearGradient id={`${uid}-peach`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#FFD08A" />
+          <stop offset="1" stopColor="#FFB042" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="60" cy="132" rx="36" ry="6" fill="#002395" opacity={0.18} />
+      <rect x="24" y="8" width="72" height="118" rx="26" fill={`url(#${uid}-body)`} />
+      <rect x="24" y="8" width="72" height="118" rx="26" fill="none" stroke="#fff" strokeOpacity={0.22} strokeWidth={2} />
+      <path d="M33 54h54" stroke="#fff" strokeOpacity={0.28} strokeWidth={4} strokeLinecap="round" />
+      <rect x="76" y="24" width="7" height="20" rx="3.5" fill={`url(#${uid}-peach)`} />
+      <rect x="76" y="66" width="7" height="34" rx="3.5" fill={`url(#${uid}-peach)`} />
+      <ellipse cx="42" cy="28" rx="8" ry="14" fill="#fff" opacity={0.22} transform="rotate(12 42 28)" />
+    </svg>
+  );
+}
+
+
 export default function Home() {
   const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
@@ -114,105 +304,101 @@ export default function Home() {
     : result?.recipes || [];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200 pb-12">
+    <div className="min-h-screen bg-cream text-ink pb-16">
       {/* Header & Navigation */}
-      <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-10 transition-colors duration-200">
-        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div
-            className="flex items-center gap-2 cursor-pointer"
+      <header className="on-blue sticky top-0 z-10 px-3 pt-3">
+        <div className="clay-blue mx-auto flex h-16 max-w-4xl items-center justify-between rounded-full px-3 sm:px-4">
+          <button
+            type="button"
             onClick={() => setShowOnlyFavorites(false)}
+            className="clay-press flex items-center gap-2.5 rounded-full py-1 pr-3 text-left"
           >
-            <span className="font-bold text-xl bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
+            <span className="clay-sm clay-xs grid h-10 w-10 place-items-center rounded-full bg-surface">
+              <FridgeIllustration uid="nav" className="h-7 w-7" />
+            </span>
+            <span className="font-display text-xl font-semibold tracking-wide text-white">
               KulkasAI
             </span>
-          </div>
+          </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <button
               onClick={toggleDarkMode}
               aria-label={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="p-2.5 rounded-xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-md border border-slate-200/60 dark:border-slate-700/50 text-slate-700 dark:text-slate-200 hover:bg-white/70 dark:hover:bg-slate-800/70 hover:border-slate-300 dark:hover:border-slate-600 shadow-sm transition-all duration-200 active:scale-95 cursor-pointer flex items-center justify-center"
+              className="clay-sm clay-press grid h-11 w-11 place-items-center rounded-full bg-surface"
             >
               {darkMode ? (
-                /* Icon Matahari Transparan (Light Mode) */
-                <svg
-                  className="w-4 h-4 text-amber-500 fill-amber-500/10 transition-transform duration-300 rotate-0 dark:rotate-90"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="4" />
-                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-                </svg>
+                <SunIcon className="h-5 w-5 text-peach-deep" />
               ) : (
-                /* Icon Bulan Transparan (Dark Mode) */
-                <svg
-                  className="w-4 h-4 text-indigo-600 dark:text-indigo-400 fill-indigo-500/10 transition-transform duration-300 rotate-0 dark:-rotate-90"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-                </svg>
+                <MoonIcon className="h-5 w-5 text-royal" />
               )}
             </button>
 
             {/* Tombol Favorit */}
             <button
               onClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition flex items-center gap-1.5 border ${
+              aria-pressed={showOnlyFavorites}
+              className={`clay-press flex h-11 items-center gap-2 rounded-full pl-3.5 pr-4 text-sm font-bold ${
                 showOnlyFavorites
-                  ? 'bg-rose-500 text-white border-rose-500 shadow-sm'
-                  : 'bg-white/40 dark:bg-slate-800/40 backdrop-blur-md text-slate-700 dark:text-slate-200 border-slate-200/60 dark:border-slate-700/50 hover:bg-white/70 dark:hover:bg-slate-800/70'
+                  ? 'clay-peach'
+                  : 'clay-sm bg-surface text-heading'
               }`}
             >
-              <span>❤️</span>
+              <HeartIcon
+                filled
+                tone={showOnlyFavorites ? 'blue' : 'peach'}
+                className="h-5 w-5"
+              />
               <span>Favorit ({starredIds.length})</span>
             </button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 pt-8 space-y-8">
+      <main className="mx-auto max-w-4xl space-y-10 px-4 pt-10">
         {!showOnlyFavorites && (
-          <section className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 text-center space-y-4 transition-colors">
-            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
+          <section className="clay space-y-5 px-6 py-10 text-center sm:px-10">
+            <FridgeIllustration uid="hero" className="mx-auto h-28 w-24" />
+
+            <h1 className="font-display text-3xl font-semibold leading-tight text-heading">
               Ada bahan apa saja di kulkasmu?
             </h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+            <p className="mx-auto max-w-md text-base text-ink-soft">
               Unggah foto bahan makanan yang tersisa, KulkasAI akan meracik resep lezat dan praktis secara instan.
             </p>
 
-            <div className="flex flex-col items-center justify-center pt-2">
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="block w-full max-w-xs text-sm text-slate-500 dark:text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-500 file:text-white hover:file:bg-emerald-600 cursor-pointer"
-              />
+            <div className="flex flex-col items-center pt-2">
+              <label className="clay-field clay-well clay-press flex w-full max-w-sm items-center justify-center gap-3 border-2 border-dashed border-royal/30 px-5 py-4 text-sm font-bold text-heading">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="sr-only"
+                />
+                <span className="clay-peach clay-xs grid h-11 w-11 place-items-center rounded-full">
+                  <CameraIcon className="h-5 w-5" />
+                </span>
+                <span>{imageBase64 ? 'Ganti foto' : 'Pilih foto bahan'}</span>
+              </label>
             </div>
 
             {imageBase64 && (
-              <div className="mt-4 space-y-4 max-w-md mx-auto">
-                <img
-                  src={imageBase64}
-                  alt="Preview"
-                  className="w-full h-48 object-cover rounded-xl border border-slate-200 dark:border-slate-700 shadow-inner"
-                />
+              <div className="mx-auto mt-4 max-w-md space-y-5">
+                <div className="clay-sm rounded-[1.75rem] p-2">
+                  <img
+                    src={imageBase64}
+                    alt="Preview"
+                    className="h-48 w-full rounded-[1.35rem] object-cover"
+                  />
+                </div>
                 <button
                   onClick={handleAnalyze}
                   disabled={loading}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white font-semibold py-3 rounded-xl transition shadow-sm hover:shadow disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                  className="clay-peach clay-press flex w-full items-center justify-center gap-2.5 rounded-full py-4 font-display text-lg font-semibold disabled:opacity-60"
                 >
                   {loading ? (
                     <>
-                      <span className="animate-spin">⏳</span> Memproses Bahan...
+                      <SpinnerIcon className="h-5 w-5 animate-spin" /> Memproses Bahan...
                     </>
                   ) : (
                     'Analisis & Cari Resep'
@@ -224,22 +410,26 @@ export default function Home() {
         )}
 
         {error && (
-          <div className="p-4 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-xl text-sm border border-red-200 dark:border-red-900 text-center">
+          <div
+            role="alert"
+            className="clay-sm flex items-center justify-center gap-2.5 bg-danger p-4 text-center text-sm font-semibold text-danger-ink"
+          >
+            <AlertIcon className="h-5 w-5 shrink-0" />
             {error}
           </div>
         )}
 
         {/* Bahan Terdeteksi */}
         {!showOnlyFavorites && result && (
-          <section className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-5 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 space-y-3 transition-colors">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Bahan yang Terdeteksi:
+          <section className="clay space-y-4 p-6">
+            <h2 className="font-display text-lg font-semibold text-heading">
+              Bahan yang Terdeteksi
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5">
               {result.detectedIngredients.map((ingredient: string, idx: number) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 bg-teal-50 dark:bg-teal-950/50 text-teal-700 dark:text-teal-300 font-medium text-xs rounded-full border border-teal-200 dark:border-teal-800"
+                  className="clay-chip bg-royal-soft px-4 py-1.5 text-sm font-semibold text-royal-soft-ink"
                 >
                   {ingredient}
                 </span>
@@ -250,101 +440,129 @@ export default function Home() {
 
         {/* Kartu Resep */}
         {(recipesToDisplay.length > 0 || showOnlyFavorites) && (
-          <section className="space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">
-                {showOnlyFavorites ? 'Resep Favorit Tersimpan' : '💡 Rekomendasi Resep Untukmu'}
+          <section className="space-y-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="flex items-center gap-3 font-display text-2xl font-semibold text-heading">
+                <span className="clay-peach clay-xs grid h-10 w-10 place-items-center rounded-full">
+                  {showOnlyFavorites ? (
+                    <HeartIcon filled tone="blue" className="h-5 w-5" />
+                  ) : (
+                    <BulbIcon className="h-5 w-5" />
+                  )}
+                </span>
+                {showOnlyFavorites ? 'Resep Favorit Tersimpan' : 'Rekomendasi Resep Untukmu'}
               </h2>
               {showOnlyFavorites && (
                 <button
                   onClick={() => setShowOnlyFavorites(false)}
-                  className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold hover:underline"
+                  className="clay-sm clay-press flex items-center gap-1.5 rounded-full bg-surface px-4 py-2 text-xs font-bold text-heading"
                 >
-                  ← Kembali ke Pencarian
+                  <ArrowLeftIcon className="h-4 w-4" />
+                  Kembali ke Pencarian
                 </button>
               )}
             </div>
 
             {recipesToDisplay.length === 0 && showOnlyFavorites ? (
-              <div className="text-center py-12 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800 text-slate-500 dark:text-slate-400 space-y-2">
-                <p className="font-medium text-sm">Belum ada resep favorit yang disimpan.</p>
+              <div className="clay-well space-y-3 px-6 py-14 text-center">
+                <HeartIcon className="mx-auto h-10 w-10 text-ink-soft" />
+                <p className="text-sm font-semibold text-heading">
+                  Belum ada resep favorit yang disimpan.
+                </p>
+                <p className="text-sm text-ink-soft">
+                  Ketuk ikon hati pada sebuah resep untuk menyimpannya di sini.
+                </p>
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid gap-7 md:grid-cols-2">
                 {recipesToDisplay.map((recipe: Recipe, rIdx: number) => {
                   const isStarred = starredIds.includes(recipe.id);
 
                   return (
-                    <div
+                    <article
                       key={recipe.id || rIdx}
-                      className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 p-6 flex flex-col justify-between space-y-4 hover:border-emerald-300 dark:hover:border-emerald-600 transition relative"
+                      className="clay relative flex flex-col space-y-4 p-6"
                     >
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-start gap-2 pr-6">
-                          <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 leading-snug">
-                            {recipe.title}
-                          </h3>
-                        </div>
+                      <button
+                        onClick={() => handleToggleFavorite(recipe)}
+                        title={isStarred ? 'Hapus dari Favorit' : 'Tambah ke Favorit'}
+                        aria-label={isStarred ? 'Hapus dari Favorit' : 'Tambah ke Favorit'}
+                        aria-pressed={isStarred}
+                        className="clay-sm clay-press absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-surface text-ink-soft"
+                      >
+                        <HeartIcon filled={isStarred} className="h-5 w-5" />
+                      </button>
 
-                        <button
-                          onClick={() => handleToggleFavorite(recipe)}
-                          title={isStarred ? 'Hapus dari Favorit' : 'Tambah ke Favorit'}
-                          className="absolute top-5 right-5 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer"
-                        >
-                          <span className="text-xl">{isStarred ? '❤️' : '🤍'}</span>
-                        </button>
+                      <h3 className="pr-14 font-display text-xl font-semibold leading-snug text-heading">
+                        {recipe.title}
+                      </h3>
 
-                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                          <span className="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md whitespace-nowrap font-medium">
-                            ⏱️ {recipe.time}
-                          </span>
-                          <span className="px-2 py-0.5 bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 rounded border border-amber-200 dark:border-amber-800">
-                            {recipe.difficulty}
-                          </span>
-                        </div>
+                      <div className="flex flex-wrap items-center gap-2.5">
+                        <span className="clay-chip flex items-center gap-1.5 whitespace-nowrap bg-royal-soft px-3 py-1 text-xs font-bold text-royal-soft-ink">
+                          <ClockIcon className="h-4 w-4" />
+                          {recipe.time}
+                        </span>
+                        <span className="clay-chip bg-peach-soft px-3 py-1 text-xs font-bold text-peach-soft-ink">
+                          {recipe.difficulty}
+                        </span>
+                      </div>
 
-                        {recipe.missingIngredients?.length > 0 && (
-                          <div className="text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                            <span className="font-semibold text-slate-700 dark:text-slate-200 block mb-1">
-                              🛒 Perlu Ditambah:
+                      {recipe.missingIngredients?.length > 0 && (
+                        <div className="clay-well space-y-2 p-4 text-sm text-ink">
+                          <span className="flex items-center gap-2 font-bold text-heading">
+                            <span className="grid h-7 w-7 place-items-center rounded-full bg-peach-soft text-peach-soft-ink">
+                              <CartIcon className="h-4 w-4" />
                             </span>
-                            {recipe.missingIngredients.join(', ')}
-                          </div>
-                        )}
-
-                        <div className="space-y-2 pt-2">
-                          <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
-                            👨‍🍳 Langkah Memasak:
+                            Perlu Ditambah
                           </span>
-                          <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-400">
-                            {recipe.steps.map((step: string, sIdx: number) => {
-                              const stepKey = `${recipe.id}-${sIdx}`;
-                              const isChecked = checkedSteps[stepKey];
+                          <p className="text-ink-soft">{recipe.missingIngredients.join(', ')}</p>
+                        </div>
+                      )}
 
-                              return (
-                                <li
-                                  key={sIdx}
-                                  onClick={() => toggleStep(stepKey)}
-                                  className={`flex items-start gap-2.5 p-2 rounded-lg cursor-pointer transition ${
+                      <div className="space-y-2.5 pt-1">
+                        <span className="flex items-center gap-2 text-sm font-bold text-heading">
+                          <span className="grid h-7 w-7 place-items-center rounded-full bg-royal-soft text-royal-soft-ink">
+                            <ChefHatIcon className="h-4 w-4" />
+                          </span>
+                          Langkah Memasak
+                        </span>
+                        <ul className="space-y-2 text-sm">
+                          {recipe.steps.map((step: string, sIdx: number) => {
+                            const stepKey = `${recipe.id}-${sIdx}`;
+                            const isChecked = !!checkedSteps[stepKey];
+
+                            return (
+                              <li key={sIdx}>
+                                <label
+                                  className={`flex cursor-pointer items-start gap-3 rounded-2xl p-3 transition-colors ${
                                     isChecked
-                                      ? 'bg-emerald-50 dark:bg-emerald-950/30 text-slate-400 dark:text-slate-500 line-through'
-                                      : 'hover:bg-slate-50 dark:hover:bg-slate-800'
+                                      ? 'clay-well clay-xs text-ink-soft line-through'
+                                      : 'text-ink hover:bg-royal-soft'
                                   }`}
                                 >
                                   <input
                                     type="checkbox"
-                                    checked={!!isChecked}
-                                    onChange={() => {}}
-                                    className="mt-0.5 accent-emerald-600 dark:accent-emerald-400 rounded cursor-pointer"
+                                    checked={isChecked}
+                                    onChange={() => toggleStep(stepKey)}
+                                    className="peer sr-only"
                                   />
-                                  <span>{step}</span>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
+                                  <span
+                                    className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-lg peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-focus ${
+                                      isChecked
+                                        ? 'clay-blue clay-xs'
+                                        : 'clay-well clay-xs bg-surface'
+                                    }`}
+                                  >
+                                    {isChecked && <CheckIcon className="h-4 w-4 text-white" />}
+                                  </span>
+                                  <span className="leading-relaxed">{step}</span>
+                                </label>
+                              </li>
+                            );
+                          })}
+                        </ul>
                       </div>
-                    </div>
+                    </article>
                   );
                 })}
               </div>
