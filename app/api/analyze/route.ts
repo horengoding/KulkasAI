@@ -3,26 +3,38 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
+    const rawKeys = process.env.GEMINI_API_KEYS || process.env.GEMINI_API_KEY;
 
-    if (!apiKey) {
+    if (!rawKeys) {
       return NextResponse.json(
-        { error: 'GEMINI_API_KEY belum dipasang di .env.local' },
+        { error: 'GEMINI_API_KEYS belum dipasang di .env.local' },
         { status: 500 }
       );
     }
 
+    const apiKeys = rawKeys.split(',').map((k) => k.trim()).filter(Boolean);
+
     const { image } = await req.json();
 
     if (!image) {
-      return NextResponse.json({ error: 'Gambar tidak boleh kosong' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Gambar tidak boleh kosong' },
+        { status: 400 }
+      );
     }
 
     const base64Data = image.includes(',') ? image.split(',')[1] : image;
-    const ai = new GoogleGenAI({ apiKey });
+
+    const randomSeed = `${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
 
     const prompt = `
-      Analisis gambar bahan makanan ini. Berikan keluaran berupa data JSON murni dengan struktur berikut:
+      [Request ID: ${randomSeed}]
+      Analisis gambar bahan makanan ini.
+
+      SANGAT PENTING: Berikan 3 variasi resep yang BEDA, KREATIF, dan TIDAK MONOTON. Sertakan takaran bumbu yang sesuai.
+      Hindari memberikan resep pasaran yang terlalu standar. Cobalah memvariasikan gaya memasak (contoh: 1 menu tumis/gulai, 1 menu olahan goreng/krispi, dan 1 menu kreasi unik ala anak kos).
+
+      Kembalikan respons HANYA dalam bentuk JSON valid dengan format persis seperti ini:
       {
         "detectedIngredients": ["bahan1", "bahan2"],
         "recipes": [
@@ -39,44 +51,69 @@ export async function POST(req: Request) {
       Pastikan resep sangat cocok untuk anak kos dengan alat sederhana (panci/wajan/rice cooker).
     `;
 
-    const modelName = 'gemini-3.6-flash';
     let responseText: string | null = null;
     let lastError: any = null;
 
-    // Lakukan percobaan ulang (retry) hingga 3 kali jika server mengalami lonjakan beban singkat (503)
+    // Lakukan percobaan ulang (retry) hingga 3 kali
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
+        const selectedKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+        const ai = new GoogleGenAI({ apiKey: selectedKey });
+
         const res = await ai.models.generateContent({
-          model: modelName,
+          model: 'gemini-3.6-flash',
           contents: [
-            { inlineData: { mimeType: 'image/jpeg', data: base64Data } },
             prompt,
+            { 
+              inlineData: { 
+                mimeType: 'image/jpeg', 
+                data: base64Data 
+              }, 
+            },
           ],
-          config: { responseMimeType: 'application/json' },
+          config: {
+            temperature: 1.0,
+            topP: 0.95,
+          },
         });
 
         if (res?.text) {
           responseText = res.text;
-          break; 
+          break;
         }
       } catch (err: any) {
         lastError = err;
-        console.warn(`[Percobaan ${attempt}/3] ${modelName} sibuk/error. Mencoba lagi...`);
+        console.warn(`[Percobaan ${attempt}/3] AI sibuk/error. Mencoba lagi...`);
         if (attempt < 3) {
-          await new Promise((resolve) => setTimeout(resolve, 1000)); // Jedah 1 detik
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Jeda 1 detik
         }
       }
     }
 
     if (!responseText) {
-      throw lastError || new Error('Gagal terhubung ke model AI.');
+      throw lastError || new Error('Gagal terhubung ke model AI setelah 3 kali percobaan.');
     }
 
-    const parsedData = JSON.parse(responseText);
+    const cleanedText = responseText.replace(/```json|```/g, '').trim();
+    const parsedData = JSON.parse(cleanedText);
+
     return NextResponse.json({ result: parsedData });
 
   } catch (error: any) {
     console.error('BACKEND ERROR DETAIL:', error);
+
+    const isRateLimit =
+      error?.status === 429 ||
+      error?.message?.includes('429') ||
+      error?.message?.includes('Quota exceeded') ||
+      error?.message?.includes('RESOURCE_EXHAUSTED');
+
+    if (isRateLimit) {
+      return NextResponse.json(
+        { error: 'Batas kuota pencarian tercapai. Silakan tunggu 1–2 menit sebelum mencoba lagi.' },
+        { status: 429 }
+      );
+    }
 
     const is503 =
       error?.status === 503 ||

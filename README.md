@@ -1,6 +1,6 @@
 # KulkasAI
 
-**KulkasAI** adalah aplikasi web interaktif yang membantu anak kos mengolah bahan makanan sisa di kulkas menjadi hidangan lezat dan praktis. Cukup unggah foto bahan makanan yang kamu punya, dan AI akan menganalisis serta meracik rekomendasi resep secara instan!
+**KulkasAI** adalah aplikasi web interaktif yang membantu anak kos mengolah bahan makanan di kulkas menjadi hidangan lezat dan praktis. Cukup unggah foto bahan makanan yang kamu punya, dan AI akan menganalisis serta meracik rekomendasi resep secara instan!
 
 ---
 
@@ -29,7 +29,7 @@
 
 1. Clone Repo
 ```bash
-git clone [https://github.com/horengoding/KulkasAI.git](https://github.com/horengoding/KulkasAI.git)
+git clone [https://github.com/horengoding/KulkasAI.git]
 ```
 2. Masuk ke folder project
 ```bash
@@ -47,5 +47,5 @@ GEMINI_API_KEY=api_key_gemini_kamu
 ```bash
 npm run dev
 ```
+6. Buka browser dan akses http://localhost:3000.
 
-Buka browser dan akses http://localhost:3000.
